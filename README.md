@@ -8,13 +8,13 @@ MongoDB (and any database for that matter) becomes unwieldy if you have many app
 Oftentimes building out your infrastructure like this makes sense to start, but as time goes on and the number of applications increases it becomes harder to do things like diagnose database performance problems and make application-specific database optimizations.
 
 `moredis` is a tool that reduces an application's direct dependency on MongoDB by syncing specific data out of MongoDB and into redis.
-The data is synced in a way that optimizes for the query patterns needed by the application, so that MongoDB to no longer lies in the request path of the application.
+The data is synced in a way that optimizes for the query patterns needed by the application, so that MongoDB no longer lies in the request path of the application.
 
 See this talk by foursquare for more detailed motivation behind breaking up MongoDB monoliths into a more service-oriented persistence layer: [Service Oriented Clusters](https://www.mongodb.com/presentations/service-oriented-clusters-foursquare-0).
 
 ## How it Works
 
-In a nutshell, `moredis` works by taking a user specified MongoDB query, then for each returned document, mapping some some value in the document to another value in that document using a redis hash.  `moredis` also allows you to parameterize your query with values passed in at runtime.
+In a nutshell, `moredis` works by taking a user specified MongoDB query, then for each returned document, mapping some value in the document to another value in that document using a redis hash.  `moredis` also allows you to parameterize your query with values passed in at runtime.
 
 For more specific examples, see [Examples](#examples)
 
